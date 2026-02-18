@@ -13,11 +13,11 @@ CREDS_PATH = Path.home() / ".config" / "openmanage" / "credentials.json"
 
 
 class Settings(BaseSettings):
-    """Settings loaded from environment variables or credentials file.
+    """Settings loaded from credentials file or environment variables.
 
     Priority order:
-    1. Environment variables (OME_HOST, OME_USERNAME, OME_PASSWORD)
-    2. ~/.config/openmanage/credentials.json
+    1. ~/.config/openmanage/credentials.json
+    2. Environment variables (OME_HOST, OME_USERNAME, OME_PASSWORD) - override
     """
 
     ome_host: str = ""
@@ -29,14 +29,14 @@ class Settings(BaseSettings):
     model_config = {"env_prefix": ""}
 
     def load_credentials(self) -> dict[str, Any]:
-        """Load credentials with env-first, config-file-fallback pattern.
+        """Load credentials with config-file-first, env-override pattern.
 
         Returns:
-            Dict with host, username, password populated from env vars or file.
+            Dict with host, username, password populated from file or env vars.
         """
         creds: dict[str, Any] = {}
 
-        # 1. FIRST: Check environment variables
+        # 1. FIRST: Load from environment variables (base/fallback)
         if self.ome_host:
             creds["host"] = self.ome_host
         if self.ome_username:
@@ -44,22 +44,16 @@ class Settings(BaseSettings):
         if self.ome_password:
             creds["password"] = self.ome_password
 
-        # If we have all required creds from env, return early
-        if creds.get("host") and creds.get("username") and creds.get("password"):
-            logger.info("Using OpenManage credentials from environment variables")
-            return creds
-
-        # 2. FALLBACK: Check credentials.json file
+        # 2. THEN: Override with credentials.json file (takes priority)
         if CREDS_PATH.exists():
             try:
                 file_creds: dict[str, Any] = json.loads(CREDS_PATH.read_text())
 
-                # Only use file values if NOT already set by env vars
-                if "host" in file_creds and not creds.get("host"):
+                if "host" in file_creds:
                     creds["host"] = file_creds["host"]
-                if "username" in file_creds and not creds.get("username"):
+                if "username" in file_creds:
                     creds["username"] = file_creds["username"]
-                if "password" in file_creds and not creds.get("password"):
+                if "password" in file_creds:
                     creds["password"] = file_creds["password"]
 
                 logger.info(f"Loaded OpenManage credentials from {CREDS_PATH}")

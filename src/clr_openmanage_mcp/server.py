@@ -466,7 +466,6 @@ def main() -> None:
     parser.add_argument("--ome-password", type=str, default=None)
     args = parser.parse_args()
 
-    # Load credentials (env vars first, then config file)
     creds = settings.load_credentials()
 
     # CLI args override everything
