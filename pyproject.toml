@@ -5,14 +5,20 @@ build-backend = "hatchling.build"
 [project]
 name = "openmanage-mcp-server"
 version = "1.0.0"
-description = "MCP server for Dell OpenManage Enterprise"
+description = "MCP server for Dell OpenManage Enterprise server management"
+readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-authors = [{name = "clearminds"}]
-keywords = ["mcp", "dell", "openmanage", "ome", "server"]
+authors = [{name = "Clearminds AB"}]
+keywords = ["mcp", "dell", "openmanage", "ome", "server-management", "model-context-protocol"]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
+    "Topic :: System :: Monitoring",
+    "Topic :: System :: Systems Administration",
 ]
 dependencies = [
     "httpx>=0.28.1",
@@ -22,7 +28,9 @@ dependencies = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/clearminds/openmanage-mcp-server"
 Repository = "https://github.com/clearminds/openmanage-mcp-server"
+Issues = "https://github.com/clearminds/openmanage-mcp-server/issues"
 
 [project.scripts]
 openmanage-mcp-server = "openmanage_mcp_server.server:main"
