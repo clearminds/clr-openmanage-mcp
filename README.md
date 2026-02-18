@@ -27,7 +27,17 @@ uvx openmanage-mcp-server
 
 ## Configuration
 
-The server requires three environment variables:
+**Preferred:** Configuration file at `~/.config/openmanage/credentials.json` (chmod 600):
+
+```json
+{
+  "host": "ome.example.com",
+  "username": "admin",
+  "password": "your-password"
+}
+```
+
+**Alternative:** Environment variables are also supported:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
@@ -51,12 +61,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "openmanage": {
       "command": "uvx",
-      "args": ["openmanage-mcp-server"],
-      "env": {
-        "OME_HOST": "ome.example.com",
-        "OME_USERNAME": "admin",
-        "OME_PASSWORD": "your-password"
-      }
+      "args": ["openmanage-mcp-server"]
     }
   }
 }
@@ -76,12 +81,7 @@ Or add to your `.mcp.json`:
 {
   "openmanage": {
     "command": "uvx",
-    "args": ["openmanage-mcp-server"],
-    "env": {
-      "OME_HOST": "ome.example.com",
-      "OME_USERNAME": "admin",
-      "OME_PASSWORD": "your-password"
-    }
+    "args": ["openmanage-mcp-server"]
   }
 }
 ```
@@ -96,17 +96,14 @@ Add to your VS Code settings or `.vscode/mcp.json`:
     "servers": {
       "openmanage": {
         "command": "uvx",
-        "args": ["openmanage-mcp-server"],
-        "env": {
-          "OME_HOST": "ome.example.com",
-          "OME_USERNAME": "admin",
-          "OME_PASSWORD": "your-password"
-        }
+        "args": ["openmanage-mcp-server"]
       }
     }
   }
 }
 ```
+
+**Note:** Configuration is read from `~/.config/openmanage/credentials.json` or environment variables. No need to specify credentials in MCP config files.
 
 ### HTTP Transport
 
