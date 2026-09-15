@@ -120,25 +120,25 @@ clr-openmanage-mcp --transport http --host 0.0.0.0 --port 8000
 
 | Tool | Description |
 |------|-------------|
-| `ome_version` | Get OME version, build info, and operation status |
+| `version` | Get OME version, build info, and operation status |
 
 ### Devices
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
-| `ome_list_devices` | List all managed devices | `top?` |
-| `ome_get_device` | Get full detail for a single device | `device_id` |
-| `ome_device_health` | Aggregate device health summary (count by status) | — |
+| `list_devices` | List all managed devices | `top?` |
+| `get_device` | Get full detail for a single device | `device_id` |
+| `device_health` | Aggregate device health summary (count by status) | — |
 
 ### Alerts
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
-| `ome_list_alerts` | List alerts with optional filters | `severity?`, `category?`, `status?`, `top?` |
-| `ome_get_alert` | Get full detail for a single alert | `alert_id` |
-| `ome_alert_count` | Alert count aggregated by severity | — |
-| `ome_alert_ack` | Acknowledge one or more alerts by ID | `alert_ids` |
-| `ome_alert_ack_all` | Acknowledge all unacknowledged alerts matching filters | `severity?`, `category?` |
+| `list_alerts` | List alerts with optional filters | `severity?`, `category?`, `status?`, `top?` |
+| `get_alert` | Get full detail for a single alert | `alert_id` |
+| `alert_count` | Alert count aggregated by severity | — |
+| `alert_ack` | Acknowledge one or more alerts by ID | `alert_ids` |
+| `alert_ack_all` | Acknowledge all unacknowledged alerts matching filters | `severity?`, `category?` |
 
 **Alert filter values:**
 
@@ -152,17 +152,17 @@ clr-openmanage-mcp --transport http --host 0.0.0.0 --port 8000
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
-| `ome_list_warranties` | List all warranty records | `top?` |
-| `ome_warranties_expired` | List warranties past their end date | — |
+| `list_warranties` | List all warranty records | `top?` |
+| `warranties_expired` | List warranties past their end date | — |
 
 ### Groups, Jobs, Policies & Firmware
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
-| `ome_list_groups` | List device groups | `top?` |
-| `ome_list_jobs` | List jobs (sorted by most recent) | `top?` |
-| `ome_list_policies` | List alert policies | `top?` |
-| `ome_list_firmware` | List firmware compliance baselines | `top?` |
+| `list_groups` | List device groups | `top?` |
+| `list_jobs` | List jobs (sorted by most recent) | `top?` |
+| `list_policies` | List alert policies | `top?` |
+| `list_firmware` | List firmware compliance baselines | `top?` |
 
 ## Example Usage
 
@@ -177,7 +177,7 @@ Once connected, you can ask your AI assistant things like:
 
 ## Safety
 
-All tools are **read-only** except `ome_alert_ack` and `ome_alert_ack_all`, which are non-destructive write operations — they mark alerts as acknowledged but do not modify device configuration.
+All tools are **read-only** except `alert_ack` and `alert_ack_all`, which are non-destructive write operations — they mark alerts as acknowledged but do not modify device configuration.
 
 ## Technical Notes
 

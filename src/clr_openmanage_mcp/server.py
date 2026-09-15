@@ -66,7 +66,7 @@ def _build_alert_filter(
 
 
 @read_tool
-def ome_version() -> dict[str, Any]:
+def version() -> dict[str, Any]:
     """Get OME version, build info, and operation status.
 
     Returns version, build number, build date, and current operation status
@@ -79,7 +79,7 @@ def ome_version() -> dict[str, Any]:
 
 
 @read_tool
-def ome_list_devices(top: int | None = None) -> list[dict[str, Any]]:
+def list_devices(top: int | None = None) -> list[dict[str, Any]]:
     """List all managed devices in OpenManage Enterprise.
 
     Args:
@@ -105,7 +105,7 @@ def ome_list_devices(top: int | None = None) -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_get_device(device_id: int) -> dict[str, Any]:
+def get_device(device_id: int) -> dict[str, Any]:
     """Get full detail for a single device by ID.
 
     Args:
@@ -118,7 +118,7 @@ def ome_get_device(device_id: int) -> dict[str, Any]:
 
 
 @read_tool
-def ome_device_health() -> dict[str, Any]:
+def device_health() -> dict[str, Any]:
     """Get aggregate device health summary — count by status.
 
     Returns a summary of how many devices are in each health status
@@ -144,7 +144,7 @@ def ome_device_health() -> dict[str, Any]:
 
 
 @read_tool
-def ome_list_alerts(
+def list_alerts(
     severity: str | None = None,
     category: str | None = None,
     status: str | None = None,
@@ -183,7 +183,7 @@ def ome_list_alerts(
 
 
 @read_tool
-def ome_get_alert(alert_id: int) -> dict[str, Any]:
+def get_alert(alert_id: int) -> dict[str, Any]:
     """Get full detail for a single alert by ID.
 
     Args:
@@ -195,7 +195,7 @@ def ome_get_alert(alert_id: int) -> dict[str, Any]:
 
 
 @read_tool
-def ome_alert_count() -> dict[str, Any]:
+def alert_count() -> dict[str, Any]:
     """Get alert count aggregated by severity.
 
     Returns total alert count and breakdown by severity level
@@ -213,7 +213,7 @@ def ome_alert_count() -> dict[str, Any]:
 
 
 @write_tool
-def ome_alert_ack(alert_ids: list[int]) -> dict[str, Any]:
+def alert_ack(alert_ids: list[int]) -> dict[str, Any]:
     """Acknowledge one or more alerts by ID.
 
     This is a non-destructive write operation — it marks alerts as
@@ -234,7 +234,7 @@ def ome_alert_ack(alert_ids: list[int]) -> dict[str, Any]:
 
 
 @write_tool
-def ome_alert_ack_all(
+def alert_ack_all(
     severity: str | None = None,
     category: str | None = None,
 ) -> dict[str, Any]:
@@ -286,7 +286,7 @@ def ome_alert_ack_all(
 
 
 @read_tool
-def ome_list_warranties(top: int | None = None) -> list[dict[str, Any]]:
+def list_warranties(top: int | None = None) -> list[dict[str, Any]]:
     """List all warranty records.
 
     Args:
@@ -311,7 +311,7 @@ def ome_list_warranties(top: int | None = None) -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_warranties_expired() -> list[dict[str, Any]]:
+def warranties_expired() -> list[dict[str, Any]]:
     """List warranties that have expired (past EndDate).
 
     Client-side date filter since OME doesn't support date comparison
@@ -355,7 +355,7 @@ def ome_warranties_expired() -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_list_groups(top: int | None = None) -> list[dict[str, Any]]:
+def list_groups(top: int | None = None) -> list[dict[str, Any]]:
     """List device groups.
 
     Args:
@@ -377,7 +377,7 @@ def ome_list_groups(top: int | None = None) -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_list_jobs(top: int | None = None) -> list[dict[str, Any]]:
+def list_jobs(top: int | None = None) -> list[dict[str, Any]]:
     """List jobs, most recent first.
 
     OME Jobs API does not support $orderby, so results are sorted
@@ -415,7 +415,7 @@ def ome_list_jobs(top: int | None = None) -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_list_policies(top: int | None = None) -> list[dict[str, Any]]:
+def list_policies(top: int | None = None) -> list[dict[str, Any]]:
     """List alert policies.
 
     Args:
@@ -437,7 +437,7 @@ def ome_list_policies(top: int | None = None) -> list[dict[str, Any]]:
 
 
 @read_tool
-def ome_list_firmware(top: int | None = None) -> list[dict[str, Any]]:
+def list_firmware(top: int | None = None) -> list[dict[str, Any]]:
     """List firmware compliance baselines.
 
     Args:
